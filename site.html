@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Woohoo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <div id="navbar" onclick=showSideBar()>
+      <svg id="menu" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
+    </div>
+
+    <div id="sidebar">
+      <div id="sidebar-close" onclick=closeSideBar()>
+        <svg id="closer" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+      </div>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About Me</a></li>
+        <li><a href="#">Projects</a></li>
+      </ul>
+    </div>
+  </nav>
+
+    <div id="banner">
+      <p id="name">Langkee Hong</p>
+      <p class="subheader">Computer Science student</p>
+      <p class="description">
+        Studying Computer Science at UNSW Sydney as a undergraduate student since 2023.
+        <br>I am currently learning about full-stack web development.
+      </p>
+    </div>
+  <script type="text/javascript" src="script.js"></script>
+</body>
+</html>
