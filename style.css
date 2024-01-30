@@ -3,6 +3,7 @@ body {
   background-color: rgb(35, 37, 49);
   color: rgb(132, 160, 198);
   fill: rgb(132, 160, 198);
+  overflow: hidden;
 }
 
 nav {
