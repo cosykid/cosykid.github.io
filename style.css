@@ -1,0 +1,166 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Arcade Normal', sans-serif;
+  background-color: rgb(1, 0, 29);
+  color: white;
+}
+
+section {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  min-height: 100vh;
+}
+ 
+p, h1 {
+  font-family: 'Arcade Interlaced', sans-serif;
+}
+
+#welcome-description {
+  margin-block: 20px;
+}
+
+.hidden {
+  opacity: 0;
+  filter: blur(5px);
+  transform: translateX(-100%);
+  transition: all 1s;
+}
+
+.show {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateX(0);
+}
+
+#main.hidden {
+  opacity: 0;
+  filter: blur(5px);
+  transition: 4s;
+  transform: none;
+}
+
+.show#main {
+  opacity: 1;
+  filter: blur(0);
+}
+
+.welcome-text {
+  display: inline-block;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 1000px) {
+  #welcome-description {
+    font-size: 1.6vw;
+  }
+  #korean-ppl, #nz {
+    margin-bottom: 50vw;
+  }
+}
+
+.word-container {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+#welcome {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-inline: 30px;
+}
+
+#korea:hover {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 2px;
+}
+
+#korea-container {
+  position: relative;
+}
+
+.hover-text {
+  display: none;
+  position: absolute;
+  top: -20px; /* Adjust the distance above the text */
+  left: 2px;
+  padding: 5px; /* Optional: Add padding for better visibility */
+  font-size: 0.5em;
+}
+
+#korea:hover + .hover-text {
+  display: inline-block; /* Show when #korea is hovered */
+}
+
+.stagger {
+  margin-inline: 10px;
+}
+
+.stagger:nth-child(2) {
+  transition-delay: 250ms;
+}
+
+.stagger:nth-child(3) {
+  transition-delay: 500ms;
+}
+
+#gifs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#korean-ppl {
+  display: inline-block;
+  font-size: 0.75em; 
+  font-family: 'Arcade Rounded', sans-serif;
+  color: rgb(228, 255, 122);
+  transition-delay: 250ms;
+  margin-top: 8px;
+}
+
+#nz-birds {
+  color: rgb(252, 193, 255);
+  margin-top: 27px;
+  font-size: 0.75em; 
+  font-family: 'Arcade Rounded', sans-serif;
+}
+
+#sydney {
+  color: rgb(145, 255, 205);
+  font-size: 0.75em; 
+  font-family: 'Arcade Rounded', sans-serif;
+  transition-delay: 250ms;
+  margin-top: 8px;
+}
+
+#year-2004, #year-2009, #year-2023, #about-me {
+  font-size: 3em;
+  margin: 10px;
+}
+
+.korea-description {
+  margin-bottom: 8px;
+}
+
+#year-2004 {
+  color: rgb(228, 255, 122);
+}
+
+#year-2009 {
+  color: rgb(252, 193, 255);
+}
+
+#year-2023 {
+  color: rgb(145, 255, 205);
+}
+
+#about-me {
+  color: rgb(154, 221, 255)
+}
