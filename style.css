@@ -65,7 +65,7 @@ p, h1 {
 
 @media screen and (max-width: 810px) {
   img, iframe {
-    width: 50vw;
+    width: 70vw;
     height: auto;
   }
   .videos:nth-child(2), .videos:nth-child(4) {
