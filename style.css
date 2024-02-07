@@ -58,8 +58,18 @@ p, h1 {
   #welcome-description {
     font-size: 1.6vw;
   }
-  #korean-ppl, #nz {
-    margin-bottom: 50vw;
+  #korean-ppl, #nz, #sydney {
+    margin-bottom: 50vh;
+  }
+}
+
+@media screen and (max-width: 810px) {
+  img, iframe {
+    width: 50vw;
+    height: auto;
+  }
+  .videos:nth-child(2), .videos:nth-child(4) {
+    transition-delay: 0ms;
   }
 }
 
@@ -88,14 +98,14 @@ p, h1 {
 .hover-text {
   display: none;
   position: absolute;
-  top: -20px; /* Adjust the distance above the text */
-  left: 2px;
-  padding: 5px; /* Optional: Add padding for better visibility */
+  top: -20px;
+  left: 135px;
+  padding: 5px;
   font-size: 0.5em;
 }
 
 #korea:hover + .hover-text {
-  display: inline-block; /* Show when #korea is hovered */
+  display: inline-block;
 }
 
 .stagger {
@@ -109,6 +119,16 @@ p, h1 {
 .stagger:nth-child(3) {
   transition-delay: 500ms;
 }
+
+.videos {
+  margin: 10px;
+}
+
+.videos:nth-child(2), .videos:nth-child(4) {
+  transition-delay: 250ms;
+}
+
+
 
 #gifs {
   display: flex;
@@ -140,13 +160,14 @@ p, h1 {
   margin-top: 8px;
 }
 
-#year-2004, #year-2009, #year-2023, #about-me {
+#year-2004, #year-2009, #year-2023, #about-me, #end {
   font-size: 3em;
   margin: 10px;
 }
 
 .korea-description {
   margin-bottom: 8px;
+  text-align: center;
 }
 
 #year-2004 {
@@ -162,5 +183,9 @@ p, h1 {
 }
 
 #about-me {
+  color: rgb(248, 253, 233);
+}
+
+#end {
   color: rgb(154, 221, 255)
 }
