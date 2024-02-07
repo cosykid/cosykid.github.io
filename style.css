@@ -128,8 +128,6 @@ p, h1 {
   transition-delay: 250ms;
 }
 
-
-
 #gifs {
   display: flex;
   flex-wrap: wrap;
@@ -184,8 +182,10 @@ p, h1 {
 
 #about-me {
   color: rgb(248, 253, 233);
+  text-align: center;
 }
 
 #end {
   color: rgb(154, 221, 255)
 }
+
