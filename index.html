@@ -112,8 +112,10 @@
         cursor: pointer;
         transition: opacity 0.3s var(--ease);
       }
-      .name-btn:hover {
-        opacity: 0.6;
+      @media (hover: hover) {
+        .name-btn:hover {
+          opacity: 0.6;
+        }
       }
       .name-btn:focus-visible {
         outline: 2px solid var(--ink);
@@ -153,11 +155,16 @@
         width: clamp(21px, 2.7vmin, 25px);
         height: auto;
       }
-      .icon:hover,
       .icon:focus-visible {
         transform: translateY(-2px);
         opacity: 0.6;
         outline: none;
+      }
+      @media (hover: hover) {
+        .icon:hover {
+          transform: translateY(-2px);
+          opacity: 0.6;
+        }
       }
 
       .divider {
@@ -199,19 +206,26 @@
         transform-origin: left;
         transition: transform 0.4s var(--ease);
       }
-      .resume:hover,
       .resume:focus-visible {
         outline: none;
       }
-      .resume:hover::after,
       .resume:focus-visible::after {
         transform: scaleX(1);
       }
-      .resume:hover .arr,
       .resume:focus-visible .arr {
         transform: translate(2px, 0);
         opacity: 1;
         color: var(--ink);
+      }
+      @media (hover: hover) {
+        .resume:hover::after {
+          transform: scaleX(1);
+        }
+        .resume:hover .arr {
+          transform: translate(2px, 0);
+          opacity: 1;
+          color: var(--ink);
+        }
       }
 
       /* ---- QR ---- */
@@ -223,8 +237,10 @@
         display: inline-flex;
         animation: qrIn 0.55s var(--ease) both;
       }
-      .qr:hover {
-        opacity: 0.68;
+      @media (hover: hover) {
+        .qr:hover {
+          opacity: 0.68;
+        }
       }
       @keyframes qrIn {
         from {
