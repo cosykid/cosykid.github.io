@@ -1,130 +1,453 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>0 seconds wasted</title>
-  <link href="https://fonts.cdnfonts.com/css/arcade" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <section class="hidden" id="main">
-    <div id="welcome"></div>
-    <p id="welcome-description">Scroll down for more...</p>
-  </section>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Langkee Hong — Software Developer</title>
+    <meta
+      name="description"
+      content="Langkee Hong — software developer based in Sydney."
+    />
+    <meta name="theme-color" content="#fbfbfa" />
 
-  <section>
-    <h1 class="hidden" id="year-2004">2004</h1>
+    <!-- Open Graph -->
+    <meta property="og:title" content="Langkee Hong" />
+    <meta
+      property="og:description"
+      content="Software developer based in Sydney."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://cosykid.github.io/" />
 
-    <div class="hidden korea-description">
-      <span>I was born in</span>
-      <span id="korea-container">
-        <span style="margin-right: -10px;">Chungju,</span>
-        <span id="korea">korea</span>
-        <span class="hover-text">(South)</span>
-      </span>
-      <span style="font-size: 1.5em; margin-left: -7px;">🇰🇷</span>
-    </div>
+    <!-- Monogram favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a1a18'/%3E%3Ctext x='16' y='23' font-family='Arial,sans-serif' font-size='19' font-weight='700' text-anchor='middle' fill='%23fbfbfa'%3EL%3C/text%3E%3C/svg%3E"
+    />
 
-    <div id="korean-time" class="hidden korea-description"></div>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
 
-    <div id="gifs">
-      <div class="stagger hidden">
-        <img src="media/bts.gif" width="270" height="270" frameBorder="0"></img>
+    <style>
+      :root {
+        --paper: #fbfbfa;
+        --ink: #18181a;
+        --ink-soft: #86868a;
+        --ink-faint: #b6b6ba;
+
+        --font:
+          "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --ease: cubic-bezier(0.22, 1, 0.36, 1);
+        --pad: clamp(1.5rem, 5vmin, 3.25rem);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--font);
+        font-weight: 400;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+
+      ::selection {
+        background: var(--ink);
+        color: var(--paper);
+      }
+
+      .wrap {
+        height: 100dvh;
+        display: grid;
+        place-items: center;
+        padding: var(--pad);
+        position: relative;
+      }
+
+      .card {
+        width: 100%;
+        max-width: 840px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: clamp(2rem, 7vmin, 5rem);
+      }
+
+      /* ---- Identity ---- */
+      .name {
+        margin: 0;
+      }
+      .name-btn {
+        font-family: inherit;
+        font-weight: 600;
+        font-size: clamp(2rem, 6.4vmin, 3.5rem);
+        line-height: 1.04;
+        letter-spacing: -0.025em;
+        color: var(--ink);
+        background: none;
+        border: 0;
+        padding: 0;
+        /* pull left by the glyph's side-bearing so ink aligns flush */
+        margin: 0 0 0 -0.08em;
+        text-align: left;
+        cursor: pointer;
+        transition: opacity 0.3s var(--ease);
+      }
+      .name-btn:hover {
+        opacity: 0.6;
+      }
+      .name-btn:focus-visible {
+        outline: 2px solid var(--ink);
+        outline-offset: 5px;
+        border-radius: 2px;
+      }
+
+      .role {
+        margin: clamp(0.25rem, 0.8vmin, 0.45rem) 0 0 calc(-0.055em - 1px);
+        font-weight: 400;
+        font-size: clamp(0.92rem, 2.15vmin, 1.12rem);
+        letter-spacing: -0.005em;
+        color: var(--ink-soft);
+      }
+
+      /* ---- Actions: icon links + Resume ---- */
+      .actions {
+        margin: clamp(1.7rem, 4.4vmin, 2.6rem) 0 0;
+        display: flex;
+        align-items: center;
+        gap: clamp(0.7rem, 2vmin, 1rem);
+      }
+      .socials {
+        display: inline-flex;
+        align-items: center;
+        gap: clamp(0.5rem, 1.5vmin, 0.72rem);
+      }
+      .icon {
+        display: inline-flex;
+        color: var(--ink);
+        transition:
+          transform 0.3s var(--ease),
+          opacity 0.3s var(--ease);
+      }
+      .icon svg {
+        display: block;
+        width: clamp(21px, 2.7vmin, 25px);
+        height: auto;
+      }
+      .icon:hover,
+      .icon:focus-visible {
+        transform: translateY(-2px);
+        opacity: 0.6;
+        outline: none;
+      }
+
+      .divider {
+        width: 1px;
+        height: clamp(15px, 2.2vmin, 19px);
+        background: var(--ink-faint);
+        margin-inline: 0;
+      }
+
+      .resume {
+        position: relative;
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.4em;
+        text-decoration: none;
+        color: var(--ink);
+        font-weight: 500;
+        font-size: clamp(0.9rem, 2.1vmin, 1.05rem);
+        letter-spacing: -0.005em;
+      }
+      .resume .arr {
+        color: var(--ink-faint);
+        transform: translate(-3px, 0);
+        opacity: 0;
+        transition:
+          transform 0.35s var(--ease),
+          opacity 0.3s var(--ease),
+          color 0.3s var(--ease);
+      }
+      .resume::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -0.16em;
+        height: 1px;
+        width: 100%;
+        background: currentColor;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s var(--ease);
+      }
+      .resume:hover,
+      .resume:focus-visible {
+        outline: none;
+      }
+      .resume:hover::after,
+      .resume:focus-visible::after {
+        transform: scaleX(1);
+      }
+      .resume:hover .arr,
+      .resume:focus-visible .arr {
+        transform: translate(2px, 0);
+        opacity: 1;
+        color: var(--ink);
+      }
+
+      /* ---- QR ---- */
+      .qr {
+        display: none;
+        transition: opacity 0.4s var(--ease);
+      }
+      .card.is-open .qr {
+        display: inline-flex;
+        animation: qrIn 0.55s var(--ease) both;
+      }
+      .qr:hover {
+        opacity: 0.68;
+      }
+      @keyframes qrIn {
+        from {
+          opacity: 0;
+          transform: scale(0.94) translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      .qr-svg {
+        display: block;
+        width: clamp(116px, 17vmin, 162px);
+        height: auto;
+        color: var(--ink);
+      }
+
+      /* ---- Footer clock ---- */
+      .foot {
+        position: absolute;
+        left: var(--pad);
+        bottom: var(--pad);
+        font-size: clamp(0.6rem, 1.4vmin, 0.7rem);
+        font-weight: 500;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+      }
+      .foot b {
+        font-weight: 500;
+        color: var(--ink-soft);
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* ---- Entrance ---- */
+      .rise {
+        opacity: 0;
+        transform: translateY(10px);
+        animation: rise 0.85s var(--ease) forwards;
+        animation-delay: var(--d, 0s);
+      }
+      @keyframes rise {
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* ---- Responsive: stack, still one viewport ---- */
+      @media (max-width: 720px), (max-aspect-ratio: 4/5) {
+        .card {
+          grid-template-columns: 1fr;
+          justify-items: start;
+          gap: clamp(2.2rem, 8vmin, 3.2rem);
+        }
+        .name-btn {
+          font-size: clamp(2.1rem, 10vmin, 3rem);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .rise {
+          animation: none;
+          opacity: 1;
+          transform: none;
+        }
+        .icon,
+        .resume,
+        .resume::after,
+        .resume .arr,
+        .qr {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <div class="card">
+        <section class="id">
+          <h1 class="name rise" style="--d: 0.05s">
+            <button
+              type="button"
+              class="name-btn"
+              id="nameBtn"
+              aria-expanded="false"
+              aria-controls="qrPanel"
+            >
+              Langkee Hong
+            </button>
+          </h1>
+          <p class="role rise" style="--d: 0.16s">
+            Software Developer based in Sydney
+          </p>
+
+          <nav
+            class="actions rise"
+            style="--d: 0.3s"
+            aria-label="Profiles and links"
+          >
+            <div class="socials">
+              <a
+              class="icon"
+              href="https://www.linkedin.com/in/langkee/"
+              target="_blank"
+              rel="noopener"
+              aria-label="LinkedIn"
+              title="LinkedIn"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  fill="currentColor"
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"
+                />
+              </svg>
+            </a>
+            <a
+              class="icon"
+              href="https://github.com/cosykid"
+              target="_blank"
+              rel="noopener"
+              aria-label="GitHub"
+              title="GitHub"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  fill="currentColor"
+                  d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.015 2.898-.015 3.293 0 .322.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                />
+              </svg>
+            </a>
+            <a
+              class="icon"
+              href="mailto:langkeescapes@gmail.com"
+              aria-label="Email"
+              title="Email"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  fill="currentColor"
+                  d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5z"
+                />
+              </svg>
+            </a>
+            </div>
+            <span class="divider" aria-hidden="true"></span>
+            <a class="resume" href="./Langkee_resume.pdf" target="_blank" rel="noopener"
+              >Resume <span class="arr">↗</span></a
+            >
+          </nav>
+        </section>
+
+        <a
+          class="qr"
+          id="qrPanel"
+          href="https://cosykid.github.io/"
+          aria-label="Open cosykid.github.io"
+        >
+          <svg
+            class="qr-svg"
+            viewBox="0 0 25 25"
+            xmlns="http://www.w3.org/2000/svg"
+            shape-rendering="crispEdges"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path
+              d="M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM8 0h1v1h-1zM14 0h1v1h-1zM18 0h1v1h-1zM19 0h1v1h-1zM20 0h1v1h-1zM21 0h1v1h-1zM22 0h1v1h-1zM23 0h1v1h-1zM24 0h1v1h-1zM0 1h1v1h-1zM6 1h1v1h-1zM8 1h1v1h-1zM12 1h1v1h-1zM13 1h1v1h-1zM14 1h1v1h-1zM16 1h1v1h-1zM18 1h1v1h-1zM24 1h1v1h-1zM0 2h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM6 2h1v1h-1zM8 2h1v1h-1zM9 2h1v1h-1zM10 2h1v1h-1zM11 2h1v1h-1zM12 2h1v1h-1zM13 2h1v1h-1zM14 2h1v1h-1zM18 2h1v1h-1zM20 2h1v1h-1zM21 2h1v1h-1zM22 2h1v1h-1zM24 2h1v1h-1zM0 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM6 3h1v1h-1zM10 3h1v1h-1zM11 3h1v1h-1zM12 3h1v1h-1zM13 3h1v1h-1zM16 3h1v1h-1zM18 3h1v1h-1zM20 3h1v1h-1zM21 3h1v1h-1zM22 3h1v1h-1zM24 3h1v1h-1zM0 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM6 4h1v1h-1zM8 4h1v1h-1zM9 4h1v1h-1zM11 4h1v1h-1zM16 4h1v1h-1zM18 4h1v1h-1zM20 4h1v1h-1zM21 4h1v1h-1zM22 4h1v1h-1zM24 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM9 5h1v1h-1zM10 5h1v1h-1zM14 5h1v1h-1zM16 5h1v1h-1zM18 5h1v1h-1zM24 5h1v1h-1zM0 6h1v1h-1zM1 6h1v1h-1zM2 6h1v1h-1zM3 6h1v1h-1zM4 6h1v1h-1zM5 6h1v1h-1zM6 6h1v1h-1zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM19 6h1v1h-1zM20 6h1v1h-1zM21 6h1v1h-1zM22 6h1v1h-1zM23 6h1v1h-1zM24 6h1v1h-1zM9 7h1v1h-1zM10 7h1v1h-1zM12 7h1v1h-1zM13 7h1v1h-1zM14 7h1v1h-1zM15 7h1v1h-1zM16 7h1v1h-1zM0 8h1v1h-1zM3 8h1v1h-1zM4 8h1v1h-1zM5 8h1v1h-1zM6 8h1v1h-1zM7 8h1v1h-1zM8 8h1v1h-1zM10 8h1v1h-1zM11 8h1v1h-1zM12 8h1v1h-1zM14 8h1v1h-1zM16 8h1v1h-1zM17 8h1v1h-1zM20 8h1v1h-1zM22 8h1v1h-1zM23 8h1v1h-1zM24 8h1v1h-1zM0 9h1v1h-1zM1 9h1v1h-1zM3 9h1v1h-1zM4 9h1v1h-1zM5 9h1v1h-1zM7 9h1v1h-1zM9 9h1v1h-1zM13 9h1v1h-1zM14 9h1v1h-1zM15 9h1v1h-1zM16 9h1v1h-1zM19 9h1v1h-1zM20 9h1v1h-1zM21 9h1v1h-1zM22 9h1v1h-1zM23 9h1v1h-1zM1 10h1v1h-1zM2 10h1v1h-1zM5 10h1v1h-1zM6 10h1v1h-1zM8 10h1v1h-1zM14 10h1v1h-1zM15 10h1v1h-1zM19 10h1v1h-1zM21 10h1v1h-1zM24 10h1v1h-1zM0 11h1v1h-1zM1 11h1v1h-1zM4 11h1v1h-1zM9 11h1v1h-1zM12 11h1v1h-1zM21 11h1v1h-1zM22 11h1v1h-1zM23 11h1v1h-1zM24 11h1v1h-1zM0 12h1v1h-1zM1 12h1v1h-1zM2 12h1v1h-1zM3 12h1v1h-1zM4 12h1v1h-1zM5 12h1v1h-1zM6 12h1v1h-1zM7 12h1v1h-1zM8 12h1v1h-1zM9 12h1v1h-1zM12 12h1v1h-1zM15 12h1v1h-1zM16 12h1v1h-1zM18 12h1v1h-1zM19 12h1v1h-1zM24 12h1v1h-1zM0 13h1v1h-1zM8 13h1v1h-1zM9 13h1v1h-1zM12 13h1v1h-1zM13 13h1v1h-1zM15 13h1v1h-1zM16 13h1v1h-1zM17 13h1v1h-1zM20 13h1v1h-1zM23 13h1v1h-1zM0 14h1v1h-1zM1 14h1v1h-1zM4 14h1v1h-1zM6 14h1v1h-1zM8 14h1v1h-1zM9 14h1v1h-1zM10 14h1v1h-1zM13 14h1v1h-1zM14 14h1v1h-1zM15 14h1v1h-1zM18 14h1v1h-1zM20 14h1v1h-1zM21 14h1v1h-1zM22 14h1v1h-1zM23 14h1v1h-1zM24 14h1v1h-1zM0 15h1v1h-1zM3 15h1v1h-1zM7 15h1v1h-1zM8 15h1v1h-1zM9 15h1v1h-1zM10 15h1v1h-1zM11 15h1v1h-1zM16 15h1v1h-1zM17 15h1v1h-1zM19 15h1v1h-1zM21 15h1v1h-1zM22 15h1v1h-1zM24 15h1v1h-1zM0 16h1v1h-1zM2 16h1v1h-1zM3 16h1v1h-1zM5 16h1v1h-1zM6 16h1v1h-1zM10 16h1v1h-1zM12 16h1v1h-1zM13 16h1v1h-1zM16 16h1v1h-1zM17 16h1v1h-1zM18 16h1v1h-1zM19 16h1v1h-1zM20 16h1v1h-1zM22 16h1v1h-1zM23 16h1v1h-1zM8 17h1v1h-1zM9 17h1v1h-1zM12 17h1v1h-1zM16 17h1v1h-1zM20 17h1v1h-1zM22 17h1v1h-1zM23 17h1v1h-1zM0 18h1v1h-1zM1 18h1v1h-1zM2 18h1v1h-1zM3 18h1v1h-1zM4 18h1v1h-1zM5 18h1v1h-1zM6 18h1v1h-1zM8 18h1v1h-1zM10 18h1v1h-1zM11 18h1v1h-1zM14 18h1v1h-1zM16 18h1v1h-1zM18 18h1v1h-1zM20 18h1v1h-1zM24 18h1v1h-1zM0 19h1v1h-1zM6 19h1v1h-1zM8 19h1v1h-1zM9 19h1v1h-1zM11 19h1v1h-1zM13 19h1v1h-1zM14 19h1v1h-1zM15 19h1v1h-1zM16 19h1v1h-1zM20 19h1v1h-1zM0 20h1v1h-1zM2 20h1v1h-1zM3 20h1v1h-1zM4 20h1v1h-1zM6 20h1v1h-1zM8 20h1v1h-1zM10 20h1v1h-1zM11 20h1v1h-1zM12 20h1v1h-1zM15 20h1v1h-1zM16 20h1v1h-1zM17 20h1v1h-1zM18 20h1v1h-1zM19 20h1v1h-1zM20 20h1v1h-1zM0 21h1v1h-1zM2 21h1v1h-1zM3 21h1v1h-1zM4 21h1v1h-1zM6 21h1v1h-1zM8 21h1v1h-1zM9 21h1v1h-1zM11 21h1v1h-1zM13 21h1v1h-1zM14 21h1v1h-1zM15 21h1v1h-1zM17 21h1v1h-1zM18 21h1v1h-1zM23 21h1v1h-1zM24 21h1v1h-1zM0 22h1v1h-1zM2 22h1v1h-1zM3 22h1v1h-1zM4 22h1v1h-1zM6 22h1v1h-1zM11 22h1v1h-1zM13 22h1v1h-1zM15 22h1v1h-1zM16 22h1v1h-1zM20 22h1v1h-1zM21 22h1v1h-1zM22 22h1v1h-1zM23 22h1v1h-1zM24 22h1v1h-1zM0 23h1v1h-1zM6 23h1v1h-1zM10 23h1v1h-1zM11 23h1v1h-1zM12 23h1v1h-1zM17 23h1v1h-1zM19 23h1v1h-1zM20 23h1v1h-1zM22 23h1v1h-1zM23 23h1v1h-1zM24 23h1v1h-1zM0 24h1v1h-1zM1 24h1v1h-1zM2 24h1v1h-1zM3 24h1v1h-1zM4 24h1v1h-1zM5 24h1v1h-1zM6 24h1v1h-1zM8 24h1v1h-1zM9 24h1v1h-1zM12 24h1v1h-1zM16 24h1v1h-1zM18 24h1v1h-1zM21 24h1v1h-1zM24 24h1v1h-1z"
+              fill="currentColor"
+            />
+          </svg>
+        </a>
       </div>
-      <div class="stagger hidden">
-        <img src="media/faker.gif" width="480" height="270" frameBorder="0"></img>
-      </div>
-      <div class="stagger hidden">
-        <img src="media/chaewon.gif" width="270" height="270" frameBorder="0"></img>
-      </div>
-    </div>
-    <div class="hidden" id="korean-ppl">Here are some cool korean people</div>
-  </section>
-  
-  <section id="nz">
-    <h1 class="hidden" id="year-2009">2009</h1>
 
-    <div class="hidden korea-description">
-      <span>I moved to</span>
-      <span style="margin-right: -10px;">Auckland,</span>
-      <span>New Zealand</span>
-      <span style="font-size: 1.5em; margin-left: -7px;">🇳🇿</span>
-    </div>
+      <footer class="foot rise" style="--d: 0.7s">
+        Sydney&nbsp;&nbsp;<b id="clock">—:—&nbsp;—</b>
+      </footer>
+    </main>
 
-    <div id="nz-time" class="hidden korea-description"></div>
+    <script>
+      // Live Sydney time — a quiet nod to the timeline that used to live here.
+      (function () {
+        var el = document.getElementById("clock");
+        if (!el) return;
+        var fmt = new Intl.DateTimeFormat("en-AU", {
+          timeZone: "Australia/Sydney",
+          hour: "numeric",
+          minute: "2-digit",
+          hour12: true,
+        });
+        function tick() {
+          el.textContent = fmt.format(new Date()).toUpperCase();
+        }
+        tick();
+        setInterval(tick, 1000);
+      })();
 
-    <div id="gifs">
-      <div class="stagger hidden">
-        <img src="media/pukeko.gif" width="270" height="270" frameBorder="0"></img>
-      </div>
-      <div class="stagger hidden">
-        <img src="media/kiwi.gif" width="480" height="270" frameBorder="0"></img>
-      </div>
-      <div class="stagger hidden" style="display:grid; place-items: center;">
-        <img src="media/kakapo.gif" width="400" height="226" frameBorder="0"></img>
-        <div></div>
-        <div class="hidden" id="nz-birds" >These are native New Zealand birds</div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h1 class="hidden" id="year-2023">2023</h1>
-
-    <div class="hidden korea-description">
-      <span>I moved to</span>
-      <span style="margin-right: -10px;">Sydney,</span>
-      <span>Australia</span>
-      <span style="font-size: 1.5em; margin-left: -7px;">🇦🇺</span>
-    </div>
-
-    <div id="aus-time" class="hidden korea-description"></div>
-
-    <div id="gifs">
-      <div class="stagger hidden">
-        <img src="media/pc.gif" style="filter: brightness(0.8)" height="270" frameBorder="0"></img>
-      </div>
-      <div class="stagger hidden">
-        <img src="media/azkaban.jpg" height="270" frameBorder="0"></img>
-      </div>
-      <div class="stagger hidden">
-        <img src="media/kangaroo.gif" width="270" frameBorder="0"></img>
-      </div>
-    </div>
-    <div class="hidden" id="sydney">I am now studying Computer Science at UNSW</div>
-  </section>
-
-  <section>
-    <h1 class="hidden" id="about-me">About me</h1>
-
-    <div class="hidden korea-description">
-      <span>I like making videos sometimes</span>
-    </div>
-
-    <div id="korean-time" class="hidden korea-description"></div>
-
-    <div id="gifs">
-      <div class="videos hidden">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/WL5UjbLO0So?si=y_yCXdSJrG6eC21E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
-      <div class="videos hidden">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/Lkgtjsb1M-g?si=BeyzW4ghVbzwHI7f" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
-      <div class="videos hidden">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/78JUojjLNDk?si=howpTiAJQY7Dyto7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
-      <div class="videos hidden">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/vxr-R5HfOm0?si=yuFZ6_GLUk3acuXh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h1 class="hidden" id="end">The End</h1>
-    <p class="hidden" style="font-family: 'Arcade Rounded', sans-serif; text-align: center;">Thanks for following my journey</p>
-  </section>
-
-  <script src="script.js"></script>
-</body>
+      // Reveal the QR code when the name is clicked.
+      (function () {
+        var btn = document.getElementById("nameBtn");
+        var card = document.querySelector(".card");
+        if (!btn || !card) return;
+        btn.addEventListener("click", function () {
+          var open = card.classList.toggle("is-open");
+          btn.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+      })();
+    </script>
+  </body>
 </html>
