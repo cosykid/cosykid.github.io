@@ -1,5 +1,7 @@
 (function () {
-  var endpointMeta = document.querySelector('meta[name="analytics-endpoint"]');
+  var endpointMeta =
+    document.querySelector('meta[name="site-events-endpoint"]') ||
+    document.querySelector('meta[name="analytics-endpoint"]');
   var endpoint =
     window.LANGKEE_ANALYTICS_ENDPOINT ||
     (endpointMeta ? endpointMeta.getAttribute("content") : "");
@@ -58,18 +60,19 @@
 
     var body = JSON.stringify(payload);
 
-    if (navigator.sendBeacon) {
-      var blob = new Blob([body], { type: "application/json" });
-      if (navigator.sendBeacon(endpoint, blob)) return;
-    }
-
-    fetch(endpoint, {
+    var request = fetch(endpoint, {
       method: "POST",
       mode: "cors",
       headers: { "Content-Type": "application/json" },
       body: body,
       keepalive: true,
-    }).catch(function () {});
+    });
+
+    request.catch(function () {
+      if (!navigator.sendBeacon) return;
+      var blob = new Blob([body], { type: "application/json" });
+      navigator.sendBeacon(endpoint, blob);
+    });
   }
 
   send("visit", {

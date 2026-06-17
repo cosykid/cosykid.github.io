@@ -4,9 +4,9 @@ Personal site for Langkee Hong.
 
 ## Discord visit analytics
 
-The site includes a small privacy-conscious analytics script in
-`assets/analytics.js`. It logs page visits and link clicks only after an
-analytics endpoint is configured in each page's `analytics-endpoint` meta tag.
+The site includes a small privacy-conscious event script in
+`assets/site-events.js`. It logs page visits and link clicks only after an
+event endpoint is configured in each page's `site-events-endpoint` meta tag.
 
 Do not put a Discord webhook URL directly in `index.html` or browser
 JavaScript. Browser code is public, so the webhook would be exposed.
@@ -33,7 +33,7 @@ JavaScript. Browser code is public, so the webhook would be exposed.
 5. Put the deployed Worker URL in both HTML meta tags:
 
    ```html
-   <meta name="analytics-endpoint" content="https://YOUR_WORKER_URL" />
+   <meta name="site-events-endpoint" content="https://YOUR_WORKER_URL" />
    ```
 
 The Worker adds request IP and approximate Cloudflare location data before
