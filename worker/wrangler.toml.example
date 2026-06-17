@@ -1,0 +1,12 @@
+name = "langkee-site-analytics"
+main = "discord-analytics-worker.js"
+compatibility_date = "2026-06-17"
+
+[vars]
+ALLOWED_ORIGINS = "https://cosykid.github.io"
+DISCORD_USERNAME = "Site analytics"
+LOG_IP = "true"
+LOG_USER_AGENT = "true"
+
+# Set this as a secret, not a committed var:
+# wrangler secret put DISCORD_WEBHOOK_URL

@@ -192,3 +192,10 @@ p, h1 {
   color: rgb(154, 221, 255)
 }
 
+.privacy-link {
+  color: rgb(154, 221, 255);
+  font-family: 'Arcade Rounded', sans-serif;
+  font-size: 0.7em;
+  margin-top: 18px;
+  text-underline-offset: 5px;
+}
