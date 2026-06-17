@@ -80,24 +80,53 @@
     initialTitle: pagePayload.title,
   });
 
+  var lastLinkEvent = { key: "", time: 0 };
+
+  function linkFromEvent(event) {
+    var target = event.target;
+    if (!target || !target.closest) return null;
+    return target.closest("a[href]");
+  }
+
+  function trackLink(event, trigger) {
+    if ("button" in event && event.button !== 0) return;
+
+    var link = linkFromEvent(event);
+    if (!link) return;
+
+    var key = link.href;
+    var now = Date.now();
+    if (lastLinkEvent.key === key && now - lastLinkEvent.time < 750) return;
+
+    lastLinkEvent = { key: key, time: now };
+
+    send("link_click", {
+      href: link.href,
+      label: trimmed(
+        link.getAttribute("aria-label") ||
+          link.getAttribute("title") ||
+          link.textContent,
+        140
+      ),
+      target: link.getAttribute("target") || "",
+      download: link.hasAttribute("download"),
+      trigger: trigger,
+    });
+  }
+
+  document.addEventListener(
+    "pointerdown",
+    function (event) {
+      trackLink(event, "pointerdown");
+    },
+    { capture: true }
+  );
+
   document.addEventListener(
     "click",
     function (event) {
-      var link = event.target.closest && event.target.closest("a[href]");
-      if (!link) return;
-
-      send("link_click", {
-        href: link.href,
-        label: trimmed(
-          link.getAttribute("aria-label") ||
-            link.getAttribute("title") ||
-            link.textContent,
-          140
-        ),
-        target: link.getAttribute("target") || "",
-        download: link.hasAttribute("download"),
-      });
+      trackLink(event, "click");
     },
-    { capture: true },
+    { capture: true }
   );
 })();
